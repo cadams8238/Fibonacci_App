@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import InputNumberForm from "./InputNumberForm";
 
 class App extends Component {
 	render() {
@@ -10,6 +11,7 @@ class App extends Component {
 					sequence up to that number. (Please note the sequence will start at 0)
 				</p>
 				<p>Example: If you input 5, you'll see 0 1 1 2 3</p>
+				<InputNumberForm />
 			</div>
 		);
 	}
