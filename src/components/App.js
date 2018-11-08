@@ -2,6 +2,19 @@ import React, { Component } from "react";
 import InputNumberForm from "./InputNumberForm";
 
 class App extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			value: 0
+		};
+	}
+
+	setValue(e) {
+		this.setState({
+			value: e.target.value
+		});
+	}
+
 	render() {
 		return (
 			<div>
@@ -11,7 +24,7 @@ class App extends Component {
 					sequence up to that number. (Please note the sequence will start at 0)
 				</p>
 				<p>Example: If you input 5, you'll see 0 1 1 2 3</p>
-				<InputNumberForm />
+				<InputNumberForm changeValue={e => this.setValue(e)} />
 			</div>
 		);
 	}

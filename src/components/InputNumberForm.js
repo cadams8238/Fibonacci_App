@@ -1,11 +1,18 @@
 import React from "react";
 
-const InputNumberForm = () => {
+const InputNumberForm = ({ changeValue }) => {
 	return (
-		<div>
-			<input type="text" />
+		<form>
+			<label htmlFor="number">Enter Number:</label>
+			<input
+				type="text"
+				id="number"
+				name="number"
+				onChange={e => changeValue(e)}
+				placeholder="10"
+			/>
 			<button>Submit</button>
-		</div>
+		</form>
 	);
 };
 
