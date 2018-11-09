@@ -1,0 +1,40 @@
+.form {
+	margin-top: 5vh;
+	text-align: center;
+}
+
+.label {
+	font-weight: bold;
+	padding-right: 10px;
+}
+
+.input,
+.button {
+	border: none;
+	box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.2);
+}
+
+.input {
+	width: 100px;
+	height: 25px;
+	padding: 2px 7px;
+	box-sizing: border-box;
+}
+
+.button {
+	width: 60px;
+	height: 26px;
+	padding-top: 2px; /* matches default styling for top and bottom */
+	background-color: var(--yellow);
+}
+
+.button:hover {
+	cursor: pointer;
+	background-color: var(--black);
+	color: var(--yellow);
+}
+
+.input:focus,
+.button:focus {
+	outline: 3px solid var(--peach);
+}

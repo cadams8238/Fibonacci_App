@@ -1,0 +1,28 @@
+.background {
+	min-height: 100vh;
+	background: linear-gradient(110deg, #23074d, #cc5333);
+	color: whitesmoke;
+}
+
+.title {
+	text-align: center;
+	margin-top: 0;
+	padding: 5vh 10vw 0 10vw;
+}
+
+.instructions {
+	width: 70vw;
+	margin: 0 auto;
+	font-size: 1.1em;
+}
+
+.example {
+	font-style: italic;
+	text-align: center;
+}
+
+@media screen and (min-width: 800px) {
+	.instructions {
+		width: 50vw;
+	}
+}

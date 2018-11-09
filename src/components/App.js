@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import InputNumberForm from "./InputNumberForm";
 import Number from "./Number";
 
+import styles from "./styles/App.module.css";
+
 class App extends Component {
 	constructor(props) {
 		super(props);
@@ -35,13 +37,18 @@ class App extends Component {
 		}
 
 		return (
-			<div>
-				<h1>Fibonacci Sequence</h1>
-				<p>
-					Enter a number below and see what numbers make up the Fibonacci
-					sequence up to that number. (Please note the sequence will start at 0)
-				</p>
-				<p>Example: If you input 5, you'll see 0 1 1 2 3</p>
+			<div className={styles.background}>
+				<h1 className={styles.title}>Fibonacci Sequence</h1>
+				<div className={styles.instructions}>
+					<p>
+						Enter a number below and see what numbers make up the Fibonacci
+						sequence up to that number. (Please note the sequence will start at
+						0)
+					</p>
+					<p className={styles.example}>
+						Example: If you input 5, you'll see 0 1 1 2 3
+					</p>
+				</div>
 				<InputNumberForm
 					changeValue={newValue => this.setValue(newValue)}
 					onSubmit={e => this.fetchFibSequence(e)}
