@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import InputNumberForm from "./InputNumberForm";
+import Number from "./Number";
 
 class App extends Component {
 	constructor(props) {
@@ -30,7 +31,7 @@ class App extends Component {
 		if (this.state.data.length > 0) {
 			const sequence = this.state.data;
 
-			show = sequence.map((num, index) => <li key={index}>{num}</li>);
+			show = sequence.map((num, index) => <Number key={index} label={num} />);
 		}
 
 		return (
