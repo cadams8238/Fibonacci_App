@@ -10,14 +10,24 @@ class App extends Component {
 		super(props);
 		this.state = {
 			value: 0,
-			data: []
+			data: [],
+			error: false
 		};
 	}
 
 	setValue(newValue) {
-		this.setState({
-			value: newValue
-		});
+		console.log(typeof parseInt(newValue));
+		if (isNaN(parseInt(newValue))) {
+			this.setState({
+				error: true
+			});
+		} else {
+			this.setState({
+				value: newValue,
+				error: false,
+				data: []
+			});
+		}
 	}
 
 	fetchFibSequence(e) {
@@ -29,12 +39,18 @@ class App extends Component {
 	}
 
 	render() {
-		let show;
+		let show, err;
 
 		if (this.state.data.length > 0) {
 			const sequence = this.state.data;
 
 			show = sequence.map((num, index) => <Number key={index} label={num} />);
+		}
+
+		if (this.state.error) {
+			err = (
+				<p className={styles.error}>Invalid input. Please enter a number.</p>
+			);
 		}
 
 		return (
@@ -54,7 +70,10 @@ class App extends Component {
 					changeValue={newValue => this.setValue(newValue)}
 					onSubmit={e => this.fetchFibSequence(e)}
 				/>
-				<ul className={styles.numberSequence}>{show}</ul>
+				{err}
+				<ul className={styles.numberSequence} aria-label="polite">
+					{show}
+				</ul>
 			</div>
 		);
 	}
