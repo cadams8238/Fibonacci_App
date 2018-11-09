@@ -23,7 +23,7 @@ class App extends Component {
 		e.preventDefault();
 		console.log("fetching data...");
 		this.setState({
-			data: [0, 1, 2, 3]
+			data: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 100000]
 		});
 	}
 
@@ -53,7 +53,7 @@ class App extends Component {
 					changeValue={newValue => this.setValue(newValue)}
 					onSubmit={e => this.fetchFibSequence(e)}
 				/>
-				<ul>{show}</ul>
+				<ul className={styles.numberSequence}>{show}</ul>
 			</div>
 		);
 	}

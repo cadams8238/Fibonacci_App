@@ -1,0 +1,12 @@
+.number {
+	background-color: var(--yellow);
+	color: var(--black);
+	list-style: none;
+	font-size: 3em;
+	font-weight: bold;
+	display: grid;
+	grid-template-columns: auto-fit 1fr;
+	place-items: center center;
+	text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);
+	border: 5px solid rgba(0, 0, 0, 0.03);
+}

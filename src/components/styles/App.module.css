@@ -21,6 +21,14 @@
 	text-align: center;
 }
 
+.numberSequence {
+	width: 70vw;
+	margin: 10vh auto;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	grid-gap: 20px;
+}
+
 @media screen and (min-width: 800px) {
 	.instructions {
 		width: 50vw;
