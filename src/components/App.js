@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import InputNumberForm from "./InputNumberForm";
 import Number from "./Number";
+import fib from "../algo";
 
 import styles from "./styles/App.module.css";
 
@@ -23,7 +24,7 @@ class App extends Component {
 		e.preventDefault();
 		console.log("fetching data...");
 		this.setState({
-			data: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 100000]
+			data: fib(this.state.value)
 		});
 	}
 
