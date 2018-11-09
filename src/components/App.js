@@ -5,17 +5,34 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			value: 0
+			value: 0,
+			data: []
 		};
 	}
 
-	setValue(e) {
+	setValue(newValue) {
 		this.setState({
-			value: e.target.value
+			value: newValue
+		});
+	}
+
+	fetchFibSequence(e) {
+		e.preventDefault();
+		console.log("fetching data...");
+		this.setState({
+			data: [0, 1, 2, 3]
 		});
 	}
 
 	render() {
+		let show;
+
+		if (this.state.data.length > 0) {
+			const sequence = this.state.data;
+
+			show = sequence.map((num, index) => <li key={index}>{num}</li>);
+		}
+
 		return (
 			<div>
 				<h1>Fibonacci Sequence</h1>
@@ -24,7 +41,11 @@ class App extends Component {
 					sequence up to that number. (Please note the sequence will start at 0)
 				</p>
 				<p>Example: If you input 5, you'll see 0 1 1 2 3</p>
-				<InputNumberForm changeValue={e => this.setValue(e)} />
+				<InputNumberForm
+					changeValue={newValue => this.setValue(newValue)}
+					onSubmit={e => this.fetchFibSequence(e)}
+				/>
+				<ul>{show}</ul>
 			</div>
 		);
 	}
