@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import InputNumberForm from "./InputNumberForm";
 import Number from "./Number";
-import fib from "../algo";
+// import fib from "../algo";
 
 import styles from "./styles/App.module.css";
 
@@ -11,7 +11,8 @@ class App extends Component {
 		this.state = {
 			value: 0,
 			data: [],
-			error: false
+			error: false,
+			serverErr: false
 		};
 	}
 
@@ -19,7 +20,8 @@ class App extends Component {
 		console.log(typeof parseInt(newValue));
 		if (isNaN(parseInt(newValue))) {
 			this.setState({
-				error: true
+				error: true,
+				data: []
 			});
 		} else {
 			this.setState({
@@ -32,10 +34,28 @@ class App extends Component {
 
 	fetchFibSequence(e) {
 		e.preventDefault();
+		const num = this.state.value;
+
+		if (isNaN(parseInt(num))) return;
+
 		console.log("fetching data...");
-		this.setState({
-			data: fib(this.state.value)
-		});
+
+		fetch(`api/fibonacci/${num}`, {
+			headers: {
+				"Content-Type": "application/json"
+			}
+		})
+			.then(res => res.json())
+			.then(data =>
+				this.setState({
+					data: data
+				})
+			)
+			.catch(err =>
+				this.setState({
+					serverErr: true
+				})
+			);
 	}
 
 	render() {
@@ -51,6 +71,10 @@ class App extends Component {
 			err = (
 				<p className={styles.error}>Invalid input. Please enter a number.</p>
 			);
+		}
+
+		if (this.state.serverErr) {
+			err = <p className={styles.error}>Server error. Please try again.</p>;
 		}
 
 		return (
