@@ -11,22 +11,23 @@ class App extends Component {
 		this.state = {
 			value: 0,
 			data: [],
-			error: false,
-			serverErr: false
+			inputError: false,
+			serverErr: ""
 		};
 	}
 
 	setValue(newValue) {
-		console.log(typeof parseInt(newValue));
 		if (isNaN(parseInt(newValue))) {
 			this.setState({
-				error: true,
+				inputError: true,
+				serverErr: false,
 				data: []
 			});
 		} else {
 			this.setState({
 				value: newValue,
-				error: false,
+				inputError: false,
+				serverErr: false,
 				data: []
 			});
 		}
@@ -42,7 +43,8 @@ class App extends Component {
 
 		fetch(`api/fibonacci/${num}`, {
 			headers: {
-				"Content-Type": "application/json"
+				"Content-Type": "application/json",
+				Accept: "application/json"
 			}
 		})
 			.then(res => res.json())
@@ -51,11 +53,11 @@ class App extends Component {
 					data: data
 				})
 			)
-			.catch(err =>
+			.catch(err => {
 				this.setState({
 					serverErr: true
-				})
-			);
+				});
+			});
 	}
 
 	render() {
@@ -67,14 +69,18 @@ class App extends Component {
 			show = sequence.map((num, index) => <Number key={index} label={num} />);
 		}
 
-		if (this.state.error) {
+		if (this.state.inputError) {
 			err = (
 				<p className={styles.error}>Invalid input. Please enter a number.</p>
 			);
 		}
 
 		if (this.state.serverErr) {
-			err = <p className={styles.error}>Server error. Please try again.</p>;
+			err = (
+				<p className={styles.error}>
+					Sequences greater than 93 are not allowed. (unit64 overflow)
+				</p>
+			);
 		}
 
 		return (
